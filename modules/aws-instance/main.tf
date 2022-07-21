@@ -23,6 +23,8 @@ resource "aws_instance" "app" {
     sudo yum install httpd -y
     sudo systemctl enable httpd
     sudo systemctl start httpd
+    export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMAAA
+    export AWS_SECRET_ACCESS_KEY=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
     echo "<html><body><div>Hello, world!</div></body></html>" > /var/www/html/index.html
     EOF
 

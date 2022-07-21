@@ -15,7 +15,7 @@ data "aws_availability_zones" "available" {
 }
 
 resource "aws_s3_bucket" "badbucket" {
-  acl = var.public_acl
+  acl = var.bucket_acl
   
   versioning {
     enabled = var.versioning_enabled

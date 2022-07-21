@@ -17,16 +17,17 @@ resource "aws_instance" "app" {
   subnet_id              = var.subnet_ids[count.index % length(var.subnet_ids)]
   vpc_security_group_ids = var.security_group_ids
 
-  user_data = <<-EOF
-    #!/bin/bash
-    sudo yum update -y
-    sudo yum install httpd -y
-    sudo systemctl enable httpd
-    sudo systemctl start httpd
-    export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMAAA
-    export AWS_SECRET_ACCESS_KEY=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
-    echo "<html><body><div>Hello, world!</div></body></html>" > /var/www/html/index.html
-    EOF
+  user_data = <<EOF
+#! /bin/bash
+sudo apt-get update
+sudo apt-get install -y apache2
+sudo systemctl start apache2
+sudo systemctl enable apache2
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMAAA
+export AWS_SECRET_ACCESS_KEY=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
+export AWS_DEFAULT_REGION=us-west-2
+echo "<h1>Deployed via Terraform</h1>" | sudo tee /var/www/html/index.html
+EOF
 
   tags = var.tags
 }

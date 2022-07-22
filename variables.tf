@@ -12,11 +12,13 @@ variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
+/*
 variable "bucket_acl" {
   description = "S3 bucket ACL setting"
   type = string
   default = "public-read"
 }
+*/
 
 variable "versioning_enabled" {
   description = "A state of versioning. Versioning is a means of keeping multiple variants of an object in the same bucket"

@@ -14,14 +14,12 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-resource "aws_s3_bucket" "badbucket" {
-  acl = var.bucket_acl
-  
-  versioning {
-    enabled = var.versioning_enabled
-  }
+module "badbucket" {
+  source = "./modules/s3-bucket"
 
-  tags = var.resource_tags
+  bucket_acl = var.bucket_acl
+
+  versioning_enabled = var.versioning_enabled
 }
 
 module "vpc" {

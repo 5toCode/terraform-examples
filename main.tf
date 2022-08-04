@@ -16,7 +16,8 @@ data "aws_availability_zones" "available" {
 
 module "badbucket" {
   source = "./modules/s3-bucket"
-
+  
+  # allow variables for acl and versioning
   bucket_acl = var.bucket_acl
 
   versioning_enabled = var.versioning_enabled
